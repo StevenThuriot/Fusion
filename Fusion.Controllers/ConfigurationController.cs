@@ -54,7 +54,7 @@ namespace Fusion.Controllers
 		/// <param name="username">The username.</param>
 		/// <param name="password">The password.</param>
 		/// <param name="domain">The domain.</param>
-        public void SetCustomCredentials(string username, SecureString password, string domain)
+		public void SetCustomCredentials(string username, SecureString password, string domain)
 		{
 			_Configuration.SetCustomCredentials(username, password, domain);
 		}

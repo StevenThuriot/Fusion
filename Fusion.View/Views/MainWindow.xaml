@@ -1,0 +1,190 @@
+<Views:MainView x:Class="Fusion.View.Views.MainWindow"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:Nova="http://nova.thuriot.be/Base"
+				xmlns:NovaControl="http://nova.thuriot.be/Controls"
+                xmlns:Views="clr-namespace:Fusion.View.Views"
+				xmlns:RESX="clr-namespace:Fusion.View.Properties"
+                xmlns:Validation="http://nova.thuriot.be/Validation"
+                xmlns:Entities="clr-namespace:Fusion.View.Entities" Height="488"
+                Width="422" 
+				Title="{x:Static RESX:Resources.ApplicationTitle}"
+				Icon="/Resources/Cyberduck.ico" 
+                Logo="/Resources/Cyberduck.ico">
+	
+	<Views:MainView.Resources>
+		<CollectionViewSource x:Key="ChangesetsCollectionView" Source="{Binding Changesets, Mode=OneWay}" />
+	</Views:MainView.Resources>
+
+	<Views:MainView.InputBindings>
+		<KeyBinding Key="S"  Modifiers="Control" Command="{Binding ActionManager.Save}" />
+		<KeyBinding Key="L"  Modifiers="Control" Command="{Binding ActionManager.Load}" />
+		<KeyBinding Key="D"  Modifiers="Control" Command="{Binding ActionManager.ToggleDeleted}" />
+		<KeyBinding Key="M"  Modifiers="Control" Command="{Binding ActionManager.ToggleCommitMessages}" />
+		<KeyBinding Key="F4" Modifiers="Alt"     Command="{Binding ActionManager.Close}" />
+	</Views:MainView.InputBindings>
+
+	<Views:MainView.Menu>
+		<MenuItem Header="{x:Static RESX:Resources.File}">
+			<MenuItem Header="{x:Static RESX:Resources.ShowDeleted}" 
+					  Command="{Binding ActionManager.ToggleDeleted}"
+					  IsChecked="{Binding ShowDeleted, Mode=OneWay}" 
+					  InputGestureText="Ctrl+D" />
+			<MenuItem Header="{x:Static RESX:Resources.ShowCommitMessages}" 
+					  Command="{Binding ActionManager.ToggleCommitMessages}"
+					  IsChecked="{Binding ShowCommitMessages, Mode=OneWay}"
+					  InputGestureText="Ctrl+M" />
+
+			<Separator />	
+			
+			<MenuItem Header="{x:Static RESX:Resources.Save}" Command="{Binding ActionManager.Save}" InputGestureText="Ctrl+S" />			
+			<MenuItem Header="{x:Static RESX:Resources.Load}" Command="{Binding ActionManager.Load}" InputGestureText="Ctrl+L" />
+			
+			<Separator />
+			
+			<MenuItem Header="{x:Static RESX:Resources.Preferences}" Command="{Binding ActionManager.ChangeSettings}" />			
+			<MenuItem Header="{x:Static RESX:Resources.About}" Command="{Binding ActionManager.ViewAbout}" />
+
+			<Separator />
+			
+			<MenuItem Header="{x:Static RESX:Resources.Exit}" Command="{Binding ActionManager.Close}" InputGestureText="Alt+F4" />
+		</MenuItem>
+	</Views:MainView.Menu>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="{x:Static Nova:NovaFramework.DefaultSpacerGridLength}" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="{x:Static Nova:NovaFramework.DefaultSpacerGridLength}" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="80" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="50" />
+		</Grid.ColumnDefinitions>
+
+		<ComboBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+				  Width="150"
+				  HorizontalAlignment="Left"
+				  SelectedItem="{Binding SelectedCollection}"
+				  ItemsSource="{Binding Collections}"			
+				  Nova:ViewMode.Watermark="{x:Static RESX:Fields.Collections}"
+				  Validation:Validation.FieldName="{x:Static RESX:Fields.Collections}"
+				  Validation:Validation.Errors="{Nova:ErrorBinding}" />
+		
+		<ComboBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+				  Width="150"
+				  HorizontalAlignment="Right"
+				  SelectedItem="{Binding SelectedProject}"
+				  ItemsSource="{Binding Projects}"
+				  Nova:ViewMode.Watermark="{x:Static RESX:Fields.Projects}"
+				  Validation:Validation.FieldName="{x:Static RESX:Fields.Projects}"
+				  Validation:Validation.Errors="{Nova:ErrorBinding}" />
+
+		<TextBlock Grid.Row="2" Grid.Column="0" 
+				   Style="{DynamicResource NovaTextBlockBold}"
+				   HorizontalAlignment="Center"
+		           Text="{x:Static RESX:Resources.SearchLabel}" />
+
+
+		<NovaControl:SearchTextBox Grid.Row="2" Grid.Column="1" 
+									 Command="{Binding ActionManager.FetchChangesets}"
+									 ClearCommand="{Binding ActionManager.ClearChangesets}"
+									 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+									 Validation:Validation.FieldName="{x:Static RESX:Fields.WorkItemID}"
+									 Validation:Validation.Errors="{Nova:ErrorBinding}"/>
+
+		<CheckBox Grid.Row="3" Grid.Column="1" Content="{x:Static RESX:Resources.Recursive}"
+				  IsChecked="{Binding SearchRecursive}" />
+
+		<Grid Grid.Row="6" Grid.ColumnSpan="3">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="40" />
+			</Grid.ColumnDefinitions>
+
+			<ListBox Grid.Column="0" 
+					 Background="Transparent" 
+					 BorderBrush="Transparent" 
+					 HorizontalContentAlignment="Stretch"
+			         VerticalContentAlignment="Center" 
+					 SelectionMode="Extended" 
+					 ItemsSource="{Binding Source={StaticResource ChangesetsCollectionView}, Mode=OneWay}"
+					 Style="{StaticResource ChangesetListStyle}"
+			         ItemContainerStyle="{StaticResource ChangesetItemStyle}"
+					 Name="ChangesetsListBox">
+				
+				<ListBox.ContextMenu>
+					<ContextMenu>
+						<MenuItem Header="{x:Static RESX:Resources.Copy}">
+							<MenuItem Header="{x:Static RESX:Resources.CopyID}" Command="{Binding ActionManager.Copy}" CommandParameter="{x:Static Entities:CopyMode.ID}" />
+							<MenuItem Header="{x:Static RESX:Resources.CopyComment}" Command="{Binding ActionManager.Copy}" CommandParameter="{x:Static Entities:CopyMode.Comment}" />
+							<MenuItem Header="{x:Static RESX:Resources.CopyForExcel}" Command="{Binding ActionManager.Copy}" CommandParameter="{x:Static Entities:CopyMode.Excel}" />
+						</MenuItem>
+						
+						<Separator />
+						
+						<MenuItem Header="{x:Static RESX:Resources.Complete}" Command="{Binding ActionManager.CompleteSelected}" />
+						<MenuItem Header="{x:Static RESX:Resources.Delete}" Command="{Binding ActionManager.DeleteSelected}"/>
+						<MenuItem Header="{x:Static RESX:Resources.Undo}" Command="{Binding ActionManager.UndoSelected}" />
+	
+						<Separator />
+						
+						<MenuItem Header="{x:Static RESX:Resources.ShowDeleted}" 
+								  Command="{Binding ActionManager.ToggleDeleted}"
+								  IsChecked="{Binding ShowDeleted, Mode=OneWay}" />
+						
+						<MenuItem Header="{x:Static RESX:Resources.ShowCommitMessages}"
+								  Command="{Binding ActionManager.ToggleCommitMessages}"
+								  IsChecked="{Binding ShowCommitMessages, Mode=OneWay}" />
+					</ContextMenu>
+				</ListBox.ContextMenu>
+			</ListBox>
+
+			<TextBlock Text="{x:Static RESX:Resources.NoChangeSetsLabel}" 
+					   HorizontalAlignment="Center"
+					   FontSize="18" 
+			           Margin="0,20,0,0">
+				<TextBlock.Style>
+					<Style TargetType="{x:Type TextBlock}">
+						<Setter Property="Visibility" Value="Collapsed" />
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding Items.Count, ElementName=ChangesetsListBox, Mode=OneWay}" Value="0">
+								<Setter Property="Visibility" Value="Visible" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</TextBlock.Style>
+			</TextBlock>
+
+			<StackPanel Grid.Column="1" Orientation="Vertical">
+				<Button VerticalAlignment="Top" ToolTip="{x:Static RESX:Resources.CompleteButtonTooltip}" Margin="0,20,0,0"
+				        Width="30" Height="30" Command="{Binding ActionManager.CompleteSelected}">
+					<Image Source="/Nova;component/Resources/Check-icon.png" />
+				</Button>
+
+				<Button VerticalAlignment="Top" 
+						ToolTip="{x:Static RESX:Resources.DeleteButtonTooltip}" 
+						Margin="0,10,0,0" 
+						Width="30"
+				        Height="30"
+						Command="{Binding ActionManager.DeleteSelected}">
+					<Image Source="/Nova;component/Resources/Delete-icon.png" />
+				</Button>
+
+				<Button VerticalAlignment="Top" 
+						ToolTip="{x:Static RESX:Resources.UndoButtonTooltip}" 
+						Margin="0,10,0,0" 
+						Width="30"
+				        Height="30" 
+						Command="{Binding ActionManager.UndoSelected}">
+					<Image Source="/Nova;component/Resources/Undo.png" />
+				</Button>
+			</StackPanel>
+
+		</Grid>
+	</Grid>
+</Views:MainView>

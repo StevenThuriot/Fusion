@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+    <comment>About menu</comment>
+  </data>
+  <data name="AboutContent" xml:space="preserve">
+    <value>Fusion is an easy to use merge helping and changeset management tool,  designed to be used with TFS 2010 or up. This is because of the "Collections" Microsoft has built in. 
+
+The "duck" logo originated from one of the projects I participated in. Only one person was allowed to merge at a time. That person had to go get a stuffed duck and put it on his/her desk first. 
+
+Using Fusion, you can easily track all the changesets that need to be merged, either recursively or for just one item. After finding the necessary changesets, you can mark them as merged or delete them from the list in case you don't want to merge said changeset. Deleted items aren't really gone. You can still show them by clicking "Show deleted items". They will be shown red, if you do.
+
+If wanted, it is possible to select multiple changesets at once. There is also a context menu present (right click) with more options, in case this is required.
+
+It is possible to enable merge messages. These will automatically be copied to your clipboard and hold data about the changesets you have just marked as "Merged". This makes it easy to use as a merge message during commit.
+
+Finally, it's also possible to double click on a changeset and view a list of its changes.</value>
+    <comment>Content for the about window</comment>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value> &amp; </value>
+  </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>Fusion</value>
+    <comment>The application's title</comment>
+  </data>
+  <data name="Changeset" xml:space="preserve">
+    <value>Changeset</value>
+    <comment>Used as Excel Header</comment>
+  </data>
+  <data name="CloseInvalidSettings" xml:space="preserve">
+    <value>If you close the window without properly filling in all the settings, you won't be able to use the program.
+
+Continue?</value>
+    <comment>Message when  closing settings in an invalid state while it there isn't a copy on the local drive.</comment>
+  </data>
+  <data name="CloseLabel" xml:space="preserve">
+    <value>Close</value>
+    <comment>Closebutton label</comment>
+  </data>
+  <data name="Comma" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Complete</value>
+    <comment>Complete menu</comment>
+  </data>
+  <data name="CompleteButtonTooltip" xml:space="preserve">
+    <value>Complete Selected</value>
+    <comment>Tooltip to show on the complete button</comment>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy to clipboard</value>
+    <comment>Copy menu</comment>
+  </data>
+  <data name="CopyComment" xml:space="preserve">
+    <value>Comment</value>
+    <comment>Copy menu</comment>
+  </data>
+  <data name="CopyForExcel" xml:space="preserve">
+    <value>For Excel</value>
+    <comment>Label for copying the list of changesets to Excel.</comment>
+  </data>
+  <data name="CopyID" xml:space="preserve">
+    <value>ID</value>
+    <comment>Copy menu</comment>
+  </data>
+  <data name="CustomMessageTooltip" xml:space="preserve">
+    <value>Use a custom message</value>
+    <comment>Tooltip for custom message tooltip</comment>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+    <comment>Delete menu</comment>
+  </data>
+  <data name="DeleteButtonTooltip" xml:space="preserve">
+    <value>Delete Selected</value>
+    <comment>Tooltip to show on the delete button</comment>
+  </data>
+  <data name="DomainLabel" xml:space="preserve">
+    <value>Domain:</value>
+    <comment>Label for domain input</comment>
+  </data>
+  <data name="EnableClipboard" xml:space="preserve">
+    <value>Copy info to the clipboard when completing a Changeset.</value>
+    <comment>Label for enabling clipboard usage.</comment>
+  </data>
+  <data name="ErrorOcurred" xml:space="preserve">
+    <value>An error ocurred...</value>
+    <comment>Error title</comment>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Exit</value>
+    <comment>Exit menu</comment>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+    <comment>File menu</comment>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+    <comment>Help menu</comment>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+    <comment>Used as Excel Header</comment>
+  </data>
+  <data name="InvalidWorkItemIDText" xml:space="preserve">
+    <value>TFS WorkItem ID's are integers. "{0}" is invalid.</value>
+    <comment>Message to show when id is invalid</comment>
+  </data>
+  <data name="InvalidWorkItemIDTitle" xml:space="preserve">
+    <value>Invalid ID</value>
+    <comment>Title to show when id is invalid</comment>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>Load previously saved state</value>
+    <comment>Load label</comment>
+  </data>
+  <data name="LoadLastStateLabel" xml:space="preserve">
+    <value>Load the last saved state at startup.</value>
+    <comment>Label for state load.</comment>
+  </data>
+  <data name="Merged" xml:space="preserve">
+    <value>Merged</value>
+    <comment>Merged Column for Excel</comment>
+  </data>
+  <data name="MergeMessage" xml:space="preserve">
+    <value>Merged Changeset %ID%.</value>
+  </data>
+  <data name="MergeToolTip" xml:space="preserve">
+    <value>You can use %ID%, %Comment% and %IDAndComment% in your merge message as placeholders.</value>
+    <comment>Tooltip for the merge textbox.</comment>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+    <comment>No label</comment>
+  </data>
+  <data name="NoChangeSetsLabel" xml:space="preserve">
+    <value>No Changesets to display...</value>
+    <comment>Label to show when no changesets are found</comment>
+  </data>
+  <data name="PasswordLabel" xml:space="preserve">
+    <value>Password:</value>
+    <comment>Label for password input</comment>
+  </data>
+  <data name="PasswordWillNotBeSaved" xml:space="preserve">
+    <value>The password will not be saved on the system, so it will need to be set every time the tool is started.</value>
+    <comment>Message to inform the user when saving a password.</comment>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>Preferences</value>
+    <comment>Preferences menu</comment>
+  </data>
+  <data name="Recursive" xml:space="preserve">
+    <value>Search recursively...</value>
+    <comment>Recursive Option Checkbox</comment>
+  </data>
+  <data name="RestoreError" xml:space="preserve">
+    <value>An error occurred trying to restore the last saved state.</value>
+    <comment>Error shown while restoring.</comment>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save current state</value>
+    <comment>Save label</comment>
+  </data>
+  <data name="SaveLabel" xml:space="preserve">
+    <value>Save</value>
+    <comment>Save button</comment>
+  </data>
+  <data name="SearchLabel" xml:space="preserve">
+    <value>Work Item #</value>
+    <comment>The search box label</comment>
+  </data>
+  <data name="SettingsLabel" xml:space="preserve">
+    <value>Settings</value>
+    <comment>Settings label</comment>
+  </data>
+  <data name="SettingsSavedMessage" xml:space="preserve">
+    <value>Settings saved succesfully...</value>
+    <comment>Settings saved message</comment>
+  </data>
+  <data name="ShowCommitMessages" xml:space="preserve">
+    <value>Show Commit messages.</value>
+    <comment>Label for enable/disable of commit messages.</comment>
+  </data>
+  <data name="ShowDeleted" xml:space="preserve">
+    <value>Show deleted Items</value>
+    <comment>Label for option: Show deleted</comment>
+  </data>
+  <data name="TFSConnectError" xml:space="preserve">
+    <value>Can't connect to the specified TFS server using the given credentials.
+
+Please specify the correct URI and/or credentials.</value>
+    <comment>Message to show when the new settings aren't valid.</comment>
+  </data>
+  <data name="TFSURILabel" xml:space="preserve">
+    <value>TFS:</value>
+    <comment>Label for tfs uri input</comment>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>Undo</value>
+    <comment>Undo menu</comment>
+  </data>
+  <data name="UndoButtonTooltip" xml:space="preserve">
+    <value>Undo Selected</value>
+    <comment>Tooltip to show on the undo button</comment>
+  </data>
+  <data name="UriParseError" xml:space="preserve">
+    <value>"{0}" is not a valid URI.</value>
+    <comment>Message to show when the uri can't be parsed.</comment>
+  </data>
+  <data name="UseLocalCredentials" xml:space="preserve">
+    <value>Use local user credentials to log into tfs.</value>
+    <comment>Use local credentials label</comment>
+  </data>
+  <data name="UsernameLabel" xml:space="preserve">
+    <value>Username:</value>
+    <comment>Label for username input</comment>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+    <comment>Yes label</comment>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Deleted</value>
+    <comment>Deleted label</comment>
+  </data>
+  <data name="ChangesetByHeader" xml:space="preserve">
+    <value>Changeset {0} by {1}.</value>
+    <comment>Changes label</comment>
+  </data>
+  <data name="ChangeType" xml:space="preserve">
+    <value>Change Type</value>
+    <comment>Change Type label</comment>
+  </data>
+  <data name="FileType" xml:space="preserve">
+    <value>File Type</value>
+    <comment>File type label</comment>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Path</value>
+    <comment>Path label</comment>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment:</value>
+    <comment>Comment label</comment>
+  </data>
+  <data name="ViewChanges" xml:space="preserve">
+    <value>View linked Changes</value>
+    <comment>Changes label for toggle button</comment>
+  </data>
+  <data name="ViewWorkItems" xml:space="preserve">
+    <value>View linked WorkItems</value>
+    <comment>Workitems label for toggle button</comment>
+  </data>
+  <data name="SaveBeforeClose" xml:space="preserve">
+    <value>Automatically save the state before closing the application.</value>
+    <comment>Save state before close checkbox.</comment>
+  </data>
+</root>

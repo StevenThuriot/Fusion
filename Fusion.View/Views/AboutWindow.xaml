@@ -1,0 +1,62 @@
+﻿<Views:AboutView x:Class="Fusion.View.Views.AboutWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+				 xmlns:Views="clr-namespace:Fusion.View.Views" 
+				 xmlns:RESX="clr-namespace:Fusion.View.Properties"
+                 Title="{x:Static RESX:Resources.About}" 
+				 CloseOnCancel="True"				 
+				 Height="390"
+				 Width="337"
+                 Icon="/Resources/Cyberduck.ico"
+                 Logo="/Resources/Cyberduck.ico"
+				 x:Name="_AboutWindow">
+
+	<Views:AboutView.BackgroundImage>
+		<ImageBrush ImageSource="/Resources/About.png" />
+	</Views:AboutView.BackgroundImage>
+
+	<Expander Height="220"
+			  Margin="0,0,0,10"
+			  ExpandDirection="Down"
+			  IsExpanded="True"
+			  Header="Details"
+			  VerticalAlignment="Top"
+			  VerticalContentAlignment="Top"
+			  Background="White">
+		<Expander.Triggers>
+			<EventTrigger RoutedEvent="Expander.Expanded">
+				<EventTrigger.Actions>
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation Storyboard.TargetProperty="Height"
+										 From="24" To="220" Duration="0:0:0.5" />
+						</Storyboard>
+					</BeginStoryboard>
+				</EventTrigger.Actions>
+			</EventTrigger>
+
+			<EventTrigger RoutedEvent="Expander.Collapsed">
+				<EventTrigger.Actions>
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation Storyboard.TargetProperty="Height"
+										 From="220" To="24" Duration="0:0:0.5" />
+						</Storyboard>
+					</BeginStoryboard>
+				</EventTrigger.Actions>
+			</EventTrigger>
+		</Expander.Triggers>
+
+		<Border CornerRadius="4"
+				VerticalAlignment="Top"
+				Height="195"
+				Background="Transparent">
+			<ScrollViewer Margin="5"
+						  HorizontalScrollBarVisibility="Disabled"
+						  VerticalScrollBarVisibility="Auto">
+				<TextBlock Text="{x:Static RESX:Resources.AboutContent}"
+						   TextWrapping="Wrap" />
+			</ScrollViewer>
+		</Border>
+	</Expander>
+</Views:AboutView>

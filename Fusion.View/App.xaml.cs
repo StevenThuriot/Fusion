@@ -23,7 +23,7 @@ namespace Fusion.View
 		
 		public App()
 		{
-			Startup += NovaFramework.Start;
+			Startup += NovaFramework.Initialize;
 			//Nova.Base.ExceptionHandler.ShowStackTrace = true;
 		}
 	}

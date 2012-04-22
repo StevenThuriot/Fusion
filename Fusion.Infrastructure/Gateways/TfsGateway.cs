@@ -148,7 +148,7 @@ namespace Fusion.Infrastructure.Gateways
 
         public IEnumerable<string> GetCollections()
 		{
-			Guard.IsTrue(IsConnected);
+			Guard.True(IsConnected);
 
         	_Collections.Clear();
 
@@ -192,7 +192,7 @@ namespace Fusion.Infrastructure.Gateways
 
         public IEnumerable<String> GetProjects(string collection)
         {
-            Guard.IsTrue(IsConnected);
+            Guard.True(IsConnected);
 			Guard.NotNullOrWhiteSpace(collection);
 
         	CatalogNode collectionNode = GetCollection(collection);
@@ -211,7 +211,7 @@ namespace Fusion.Infrastructure.Gateways
 		
         public WorkItem GetWorkItem(string collection, string project, int id)
 		{
-			Guard.IsTrue(IsConnected);
+			Guard.True(IsConnected);
 			Guard.NotNullOrWhiteSpace(collection, project);
 
 			TfsTeamProjectCollection tpc = GetTeamProjectCollection(collection);
@@ -234,7 +234,7 @@ namespace Fusion.Infrastructure.Gateways
 
 		public IEnumerable<IChangeset> GetAssociatedChangesets(string collection, string project, int workItemId)
 		{
-			Guard.IsTrue(IsConnected);
+			Guard.True(IsConnected);
 			Guard.NotNullOrWhiteSpace(collection, project);
 			
 			var tpc = GetTeamProjectCollection(collection);
@@ -261,7 +261,7 @@ namespace Fusion.Infrastructure.Gateways
 
 		public IEnumerable<IChangeset> GetAssociatedChangesetsRecursively(string collection, string project, int workItemId)
 		{
-			Guard.IsTrue(IsConnected);
+			Guard.True(IsConnected);
 			Guard.NotNullOrWhiteSpace(collection, project);
 
 			var workItems = new Dictionary<int, WorkItem>();

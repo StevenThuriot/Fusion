@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using Moon.Extensions;
+using Moon.Helpers;
 using Nova.Base;
 using Fusion.View.Actions.Main;
 using Fusion.View.Entities;
@@ -16,7 +17,8 @@ namespace Fusion.View.ViewModel
 {
 	public class MainViewModel : BaseViewModel<MainWindow, MainViewModel>
 	{
-		private readonly ITfsController _TfsController;
+		private CollectionViewSource _ChangesetsCollectionView;
+		private ICommand _LoadProjectsAction;
 
 		public MainViewModel()
 		{
@@ -24,7 +26,6 @@ namespace Fusion.View.ViewModel
 		    _SearchRecursive = true;
 
 			Configuration = App.Get<IConfiguration>();
-			_TfsController = App.Get<ITfsController>();
 
 			_Collections = new List<string>();
 			_Projects = new ObservableCollection<string>();
@@ -53,7 +54,13 @@ namespace Fusion.View.ViewModel
 								typeof(ToggleCommitMessagesAction),
 								typeof(ToggleDeletedAction),
 								typeof(UndoSelectedAction),
-								typeof(ViewAboutAction));
+								typeof(ViewAboutAction),
+								typeof(LoadCollectionsAction),
+								typeof(LoadProjectsAction));
+
+			_LoadProjectsAction = ActionManager.LoadProjects as ICommand;
+
+			Guard.NotNull(_LoadProjectsAction);
 		}
 
 		private ICommand _ExploreChanges;
@@ -63,26 +70,6 @@ namespace Fusion.View.ViewModel
 			{
 				_ExploreChanges.Execute(null);
 			}
-		}
-
-		public void LoadCollections()
-		{
-			_TfsController.Connect();
-
-			var collections = _TfsController.PopulateCollections();
-			Collections = new List<string>(collections);
-		}
-
-		private void LoadProjects()
-		{
-			Projects.Clear();
-
-			if (string.IsNullOrWhiteSpace(SelectedCollection)) return;
-
-			_TfsController.Connect();
-
-			var projects = _TfsController.GetProjects(SelectedCollection);
-			Projects = new ObservableCollection<string>(projects);
 		}
 
 		public IConfiguration Configuration { get; private set; }
@@ -132,7 +119,7 @@ namespace Fusion.View.ViewModel
 		public IEnumerable<string> Collections
 		{
 			get { return _Collections; }
-			private set { SetValue(ref _Collections, value, () => Collections); }
+			internal set { SetValue(ref _Collections, value, () => Collections); }
 		}
 
 		private ObservableCollection<string> _Projects;
@@ -148,16 +135,15 @@ namespace Fusion.View.ViewModel
 			get { return _SelectedCollection; }
 			set
 			{
-				if (SetValue(ref _SelectedCollection, value, () => SelectedCollection))
+				if (SetValue(ref _SelectedCollection, value, () => SelectedCollection) &&
+				    _LoadProjectsAction.CanExecute(SelectedCollection))
 				{
-					LoadProjects();
+					_LoadProjectsAction.Execute(SelectedCollection);
 				}
 			}
 		}
 
 		private string _SelectedProject;
-		private CollectionViewSource _ChangesetsCollectionView;
-
 		public string SelectedProject
 		{
 			get { return _SelectedProject; }
@@ -187,12 +173,21 @@ namespace Fusion.View.ViewModel
 			if (!Configuration.IsInitialized)
 			{
 				View.Hide();
-				new SettingsWindow().ShowDialog();
+
+				using (var settingsWindows = new SettingsWindow())
+				{
+					settingsWindows.ShowDialog();
+				}
+
 				View.Show();
 			}
 
-			if (Configuration.IsInitialized)
-				LoadCollections();
+			var loadCollectionsAction = ActionManager.LoadCollections as ICommand;
+
+			if (loadCollectionsAction != null && loadCollectionsAction.CanExecute(null))
+			{
+				loadCollectionsAction.Execute(null);
+			}
 		}
 
 		public void OnViewInitialized(object sender, EventArgs e)

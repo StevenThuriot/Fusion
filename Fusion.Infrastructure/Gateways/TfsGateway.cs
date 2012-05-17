@@ -72,6 +72,8 @@ namespace Fusion.Infrastructure.Gateways
 			//Connect or reconnect if needed.
 			if (!IsConnected || _Server == null || _Server.Uri != _Configuration.TFSUri)
 			{
+				Disconnect(); //Disconnect first if needed.
+
 				_Server = _Configuration.UseLocalAccount || _Configuration.NetworkCredential == null
 				          	? new TfsConfigurationServer(_Configuration.TFSUri)
 				          	: new TfsConfigurationServer(_Configuration.TFSUri, _Configuration.NetworkCredential);
@@ -86,11 +88,11 @@ namespace Fusion.Infrastructure.Gateways
 		public void Disconnect()
 		{
 			IsConnected = false;
-			if (_Server != null)
-			{
-				_Server.Dispose();
-				_Server = null;
-			}
+			
+			if (_Server == null) return;
+
+			_Server.Dispose();
+			_Server = null;
 		}
 
 		public bool CanConnect(Uri tfsUri)
@@ -289,6 +291,9 @@ namespace Fusion.Infrastructure.Gateways
 
 		private static void FindRecursive(WorkItem item, TfsTeamProjectCollection tpc, string project, IDictionary<int, WorkItem> dict)
 		{
+			if (item == null || item.WorkItemLinks == null)
+				return;
+
 			var tempValues = new List<WorkItem>();
 
 			var workItemIds = item.WorkItemLinks

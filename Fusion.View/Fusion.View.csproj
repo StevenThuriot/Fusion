@@ -172,6 +172,8 @@
     <Compile Include="Actions\Main\ExploreChangesAction.cs" />
     <Compile Include="Actions\Main\FetchChangesetsAction.cs" />
     <Compile Include="Actions\Main\LoadAction.cs" />
+    <Compile Include="Actions\Main\LoadCollectionsAction.cs" />
+    <Compile Include="Actions\Main\LoadProjectsAction.cs" />
     <Compile Include="Actions\Main\SaveAction.cs" />
     <Compile Include="Actions\Main\ToggleCommitMessagesAction.cs" />
     <Compile Include="Actions\Main\ToggleDeletedAction.cs" />
